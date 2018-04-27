@@ -64,6 +64,11 @@ void adcConfig( adcConfig_t config );
 
 uint16_t adcRead( adcMap_t analogInput );
 
+void adcStartAsync( adcMap_t analogInput );
+
+uint16_t adcReadAsync( adcMap_t analogInput );
+
+
 /*==================[cplusplus]==============================================*/
 
 #ifdef __cplusplus

@@ -131,4 +131,39 @@ uint16_t adcRead( adcMap_t analogInput ){
    return analogValue;
 }
 
+
+/*
+ * @brief   Start ADC sampling in one ADC channel. Mode: NONBLOCKING
+ * @param   AI0 ... AIn
+ * @return  void
+ */
+void adcStartAsync( adcMap_t analogInput ){
+
+   uint8_t lpcAdcChannel = 66 - analogInput;
+
+   Chip_ADC_EnableChannel(LPC_ADC0, lpcAdcChannel, ENABLE);
+
+   Chip_ADC_Int_SetChannelCmd( LPC_ADC0, ADC_CH1, ENABLE );    //#####
+   
+   Chip_ADC_SetStartMode(LPC_ADC0, ADC_START_NOW, ADC_TRIGGERMODE_RISING);
+
+}
+
+/*
+ * @brief   Get the value of one ADC channel. Mode: NONBLOCKING
+ * @param   AI0 ... AIn
+ * @return  analog value
+ */
+uint16_t adcReadAsync( adcMap_t analogInput ){
+
+   uint8_t lpcAdcChannel = 66 - analogInput;
+   uint16_t analogValue = 0;
+
+   Chip_ADC_ReadValue( LPC_ADC0, lpcAdcChannel, &analogValue );
+
+   Chip_ADC_EnableChannel( LPC_ADC0, lpcAdcChannel, DISABLE );
+
+   return analogValue;
+}
+
 /*==================[end of file]============================================*/

@@ -50,6 +50,8 @@ extern "C" {
 
 /*==================[macros and definitions]=================================*/
 
+#define ADC_CLEAR_INT 1
+
 /*==================[typedef]================================================*/
 
 typedef enum{
@@ -66,9 +68,9 @@ uint16_t adcRead( adcMap_t analogInput );
 
 void adcStartAsync( adcMap_t analogInput );
 
-uint16_t adcReadAsync( adcMap_t analogInput );
+uint16_t adcReadAsync( adcMap_t analogInput, uint8_t clearInterrupt );
 
-
+void adcClearInterrupt( adcMap_t analogInput);
 /*==================[cplusplus]==============================================*/
 
 #ifdef __cplusplus

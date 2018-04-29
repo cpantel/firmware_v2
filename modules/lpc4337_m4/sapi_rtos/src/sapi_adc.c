@@ -154,7 +154,7 @@ void adcStartAsync( adcMap_t analogInput ){
  * @param   AI0 ... AIn
  * @return  analog value
  */
-uint16_t adcReadAsync( adcMap_t analogInput ){
+uint16_t adcReadAsync( adcMap_t analogInput, uint8_t clearInterrupt ){
 
    uint8_t lpcAdcChannel = 66 - analogInput;
    uint16_t analogValue = 0;
@@ -163,7 +163,21 @@ uint16_t adcReadAsync( adcMap_t analogInput ){
 
    Chip_ADC_EnableChannel( LPC_ADC0, lpcAdcChannel, DISABLE );
 
+   if ( ADC_CLEAR_INT == clearInterrupt ) {
+      adcClearInterrupt(analogInput);
+   }
+
    return analogValue;
 }
+
+/*
+ * @brief   Clear interrupt. Mode: NONBLOCKING
+ * @param   AI0 ... AIn
+ * @return  void
+ */
+void adcClearInterrupt( adcMap_t analogInput) {
+   Chip_PININT_ClearIntStatus( LPC_GPIO_PIN_INT,PININTCH( analogInput ) );
+}
+
 
 /*==================[end of file]============================================*/

@@ -137,7 +137,7 @@ uint16_t adcRead( adcMap_t analogInput ){
  * @param   AI0 ... AIn
  * @return  void
  */
-void adcStartAsync( adcMap_t analogInput ){
+void adcStartNonBlocking( adcMap_t analogInput ){
 
    uint8_t lpcAdcChannel = 66 - analogInput;
 
@@ -154,7 +154,7 @@ void adcStartAsync( adcMap_t analogInput ){
  * @param   AI0 ... AIn
  * @return  analog value
  */
-uint16_t adcReadAsync( adcMap_t analogInput, uint8_t clearInterrupt ){
+uint16_t adcReadNonBlocking( adcMap_t analogInput, uint8_t clearInterrupt ){
 
    uint8_t lpcAdcChannel = 66 - analogInput;
    uint16_t analogValue = 0;

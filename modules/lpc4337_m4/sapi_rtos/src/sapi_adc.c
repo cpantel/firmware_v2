@@ -143,7 +143,7 @@ void adcStartAsync( adcMap_t analogInput ){
 
    Chip_ADC_EnableChannel(LPC_ADC0, lpcAdcChannel, ENABLE);
 
-   Chip_ADC_Int_SetChannelCmd( LPC_ADC0, ADC_CH1, ENABLE );    //#####
+   Chip_ADC_Int_SetChannelCmd( LPC_ADC0, lpcAdcChannel, ENABLE );    //#####
    
    Chip_ADC_SetStartMode(LPC_ADC0, ADC_START_NOW, ADC_TRIGGERMODE_RISING);
 
